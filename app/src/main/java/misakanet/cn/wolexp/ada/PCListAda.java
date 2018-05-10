@@ -43,6 +43,8 @@ public class PCListAda extends BaseAdapter {
             holder = new ViewHolderPC();
             holder.pc_item_host = convertView.findViewById(R.id.pc_item_host);
             holder.pc_item_mac = convertView.findViewById(R.id.pc_item_mac);
+            holder.pc_item_port = convertView.findViewById(R.id.pc_item_port);
+            holder.pc_item_addr = convertView.findViewById(R.id.pc_item_addr);
             convertView.setTag(holder);
         } else {
             holder = (ViewHolderPC) convertView.getTag();
@@ -51,6 +53,8 @@ public class PCListAda extends BaseAdapter {
 
         holder.pc_item_host.setText(pc.getHost());
         holder.pc_item_mac.setText(pc.getMac());
+        holder.pc_item_port.setText(pc.getPort() + "");
+        holder.pc_item_addr.setText(pc.getAddr());
 
         return convertView;
     }
@@ -58,5 +62,7 @@ public class PCListAda extends BaseAdapter {
     class ViewHolderPC {
         TextView pc_item_host;
         TextView pc_item_mac;
+        TextView pc_item_port;
+        TextView pc_item_addr;
     }
 }

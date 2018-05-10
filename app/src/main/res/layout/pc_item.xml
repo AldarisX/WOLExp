@@ -8,11 +8,31 @@
         android:id="@+id/pc_item_host"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:textSize="20dp" />
+        android:textSize="20sp" />
 
-    <TextView
-        android:id="@+id/pc_item_mac"
+    <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:textSize="18dp" />
+        android:orientation="horizontal">
+
+        <TextView
+            android:id="@+id/pc_item_mac"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="10dp"
+            android:textSize="18sp" />
+
+        <TextView
+            android:id="@+id/pc_item_port"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="18sp" />
+    </LinearLayout>
+
+    <TextView
+        android:id="@+id/pc_item_addr"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textSize="18sp" />
+
 </LinearLayout>

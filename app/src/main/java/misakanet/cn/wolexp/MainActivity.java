@@ -56,12 +56,14 @@ public class MainActivity extends AppCompatActivity {
                 LinearLayout pcItem = (LinearLayout) view;
                 TextView pcHost = pcItem.findViewById(R.id.pc_item_host);
                 final TextView pcMac = pcItem.findViewById(R.id.pc_item_mac);
+                final TextView pcPort = pcItem.findViewById(R.id.pc_item_port);
+                final TextView pcAddr = pcItem.findViewById(R.id.pc_item_addr);
                 new AlertDialog.Builder(MainActivity.this)
                         .setMessage("给" + pcHost.getText().toString() + "发送开机命令")
                         .setNegativeButton("确定", new DialogInterface.OnClickListener() {
                             @Override
                             public void onClick(DialogInterface dialog, int which) {
-                                WOLHelper.sendWOL(pcMac.getText().toString());
+                                WOLHelper.sendWOL(pcMac.getText().toString(), Integer.parseInt(pcPort.getText().toString()), pcAddr.getText().toString());
                             }
                         })
                         .setPositiveButton("取消", new DialogInterface.OnClickListener() {
@@ -129,7 +131,7 @@ public class MainActivity extends AppCompatActivity {
                                     pcListJson = new JSONArray(sp.getString("sPCList", "[]"));
                                     for (int i = 0; i < pcListJson.length(); i++) {
                                         JSONObject pcJson = pcListJson.getJSONObject(i);
-                                        WOLHelper.sendWOL(pcJson.getString("mac"));
+                                        WOLHelper.sendWOL(pcJson.getString("mac"), pcJson.getInt("port"), pcJson.getString("addr"));
                                     }
                                 } catch (JSONException e) {
                                     e.printStackTrace();
@@ -173,6 +175,8 @@ public class MainActivity extends AppCompatActivity {
             PC pc = new PC();
             pc.setHost(pcJson.getString("host"));
             pc.setMac(pcJson.getString("mac"));
+            pc.setPort(pcJson.getInt("port"));
+            pc.setAddr(pcJson.getString("addr"));
             pcList.add(pc);
         }
         pcListAda.notifyDataSetChanged();

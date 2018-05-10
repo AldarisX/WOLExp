@@ -11,7 +11,7 @@ import java.nio.ByteBuffer;
 public class WOLHelper {
     private static final byte HEX_F = (byte) 0xFF;
 
-    public static void sendWOL(final String macAddr) {
+    public static void sendWOL(final String macAddr, final int port, final String addr) {
         new Thread(new Runnable() {
             @Override
             public void run() {
@@ -27,8 +27,8 @@ public class WOLHelper {
                     bb.rewind();
 
                     DatagramSocket socket = new DatagramSocket();
-                    InetAddress address = InetAddress.getByName("255.255.255.255");
-                    DatagramPacket magicPacket = new DatagramPacket(datas, datas.length, address, 40000);
+                    InetAddress address = InetAddress.getByName(addr);
+                    DatagramPacket magicPacket = new DatagramPacket(datas, datas.length, address, port);
                     socket.send(magicPacket);
 
                     socket.close();
