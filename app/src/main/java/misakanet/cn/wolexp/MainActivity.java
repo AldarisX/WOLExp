@@ -83,6 +83,15 @@ public class MainActivity extends AppCompatActivity {
                 new AlertDialog.Builder(MainActivity.this)
                         .setTitle("删除" + pcHost.getText().toString())
                         .setMessage("确定要删除么")
+                        .setNeutralButton("修改", new DialogInterface.OnClickListener() {
+                            @Override
+                            public void onClick(DialogInterface dialog, int which) {
+                                Intent intent = new Intent();
+                                intent.setClass(MainActivity.this, AddPCActivity.class); //设置跳转的Activity
+                                intent.putExtra("arryPos", position);
+                                startActivityForResult(intent, ADD_PC);
+                            }
+                        })
                         .setNegativeButton("确定", new DialogInterface.OnClickListener() {
                             @Override
                             public void onClick(DialogInterface dialog, int which) {
